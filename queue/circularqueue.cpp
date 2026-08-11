@@ -1,6 +1,6 @@
 #include <iostream>
 using namespace std;
-#define s 25
+#define s 3
 
 int queue[s];
 int front = -1, rear = -1;
@@ -33,7 +33,7 @@ void enqueuer(int x)
 {
     if (full())
     {
-        exit(0);
+        cout<< "Queue is full!" << endl;
     }
     else
     {
@@ -51,7 +51,8 @@ int dequeuer()
     int x;
     if(empty())
     {
-        exit(0);
+        cout << "Queue is empty!" << endl;
+        
     }
     else
     {
@@ -85,6 +86,7 @@ int display()
             i = (i + 1) % s;
         }
         cout << queue[rear] << endl;
+        cout << "Front: " << front << ", Rear: " << rear << endl;
     }
     return 1;
 }
