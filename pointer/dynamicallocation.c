@@ -21,7 +21,7 @@ int main() {
     temp = p;
     for (int i = 0; i < n; i++) {
         printf("Enter a value for index  %d: ", i);
-        scanf("%d", (temp + i));
+        scanf("%d", (temp+i));
     }
     temp = p;
     for (int i = 0; i < n; i++) {
