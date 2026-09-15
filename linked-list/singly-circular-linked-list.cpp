@@ -1,34 +1,34 @@
 #include <iostream>
-
 using namespace std;
 
-struct node {
+struct node
+{
     int data;
     node *next;
 };
-
 struct node *first = NULL;
 
-
-struct node *create_node(int x) {
-    struct node *temp = (struct node*)malloc(sizeof(struct node));
+struct node *create_node(int x)
+{
+    struct node *temp = (struct node *)malloc(sizeof(struct node));
     temp->data = x;
     temp->next = NULL;
     return temp;
 }
 
-
-void insert_first(int x) {
-        struct node *temp = create_node(x);
-
-    if (first == NULL) {
+void insert_first(int x)
+{
+    struct node *temp = create_node(x);
+    if (first == NULL)
+    {
         first = temp;
         temp->next = first;
     }
-    else {
+    else
+    {
         struct node *t = first;
-
-        while (t->next != first) {
+        while (t->next != first)
+        {
             t = t->next;
         }
 
@@ -38,18 +38,20 @@ void insert_first(int x) {
     }
 }
 
-
-void insert_last(int x) {
+void insert_last(int x)
+{
     node *temp = create_node(x);
-
-    if (first == NULL) {
+    if (first == NULL)
+    {
         first = temp;
         temp->next = first;
     }
-    else {
+    else
+    {
         node *t = first;
 
-        while (t->next != first) {
+        while (t->next != first)
+        {
             t = t->next;
         }
 
@@ -58,15 +60,15 @@ void insert_last(int x) {
     }
 }
 
-
-void insert_at_position(int x, int pos) {
-
-    if (pos == 1) {
+void insert_at_position(int x, int pos)
+{
+    if (pos == 1)
+    {
         insert_first(x);
         return;
     }
-
-    if (first == NULL) {
+    if (first == NULL)
+    {
         cout << "Position out of bounds" << endl;
         return;
     }
@@ -74,14 +76,14 @@ void insert_at_position(int x, int pos) {
     node *temp = create_node(x);
     node *t = first;
 
-    for (int i = 1; i < pos - 1; i++) {
-
-        if (t->next == first) {
+    for (int i = 1; i < pos - 1; i++)
+    {
+        if (t->next == first)
+        {
             cout << "Position out of bounds" << endl;
-            free (temp);
+            free(temp);
             return;
         }
-
         t = t->next;
     }
 
@@ -89,41 +91,44 @@ void insert_at_position(int x, int pos) {
     t->next = temp;
 }
 
-void delete_first() {
-    if (first == NULL) {
+void delete_first()
+{
+    if (first == NULL)
+    {
         cout << "List is empty" << endl;
         return;
     }
-
     node *t = first;
 
-    if (first->next == first) {
+    if (first->next == first)
+    {
         first = NULL;
-        free (t);
+        free(t);
         return;
     }
 
     node *last = first;
-
-    while (last->next != first) {
+    while (last->next != first)
+    {
         last = last->next;
     }
 
     first = first->next;
     last->next = first;
-
-    free (t);
+    free(t);
 }
 
-void delete_last() {
-    if (first == NULL) {
+void delete_last()
+{
+    if (first == NULL)
+    {
         cout << "List is empty" << endl;
         return;
     }
 
-    
-    if (first->next == first) {
-        delete first;
+    if (first->next == first)
+    {
+        free (first);
         first = NULL;
         return;
     }
@@ -131,23 +136,27 @@ void delete_last() {
     node *t = first;
     node *prev = NULL;
 
-    while (t->next != first) {
+    while (t->next != first)
+    {
         prev = t;
         t = t->next;
     }
 
     prev->next = first;
 
-    delete t;
+    free (t);
 }
 
-void delete_at_position(int pos) {
-    if (first == NULL) {
+void delete_at_position(int pos)
+{
+    if (first == NULL)
+    {
         cout << "List is empty" << endl;
         return;
     }
 
-    if (pos == 1) {
+    if (pos == 1)
+    {
         delete_first();
         return;
     }
@@ -155,8 +164,10 @@ void delete_at_position(int pos) {
     node *t = first;
     node *prev = NULL;
 
-    for (int i = 1; i < pos; i++) {
-        if (t->next == first) {
+    for (int i = 1; i < pos; i++)
+    {
+        if (t->next == first)
+        {
             cout << "Position out of bounds" << endl;
             return;
         }
@@ -166,29 +177,33 @@ void delete_at_position(int pos) {
 
     prev->next = t->next;
 
-    delete t;
+    free (t);
 }
-void display() {
+void display()
+{
 
-    if (first == NULL) {
+    if (first == NULL)
+    {
         cout << "List is empty" << endl;
         return;
     }
 
     node *t = first;
 
-    do {
+    do
+    {
         cout << t->data << " -> ";
         t = t->next;
     } while (t != first);
-
 }
 
-int main() {
+int main()
+{
 
     int x, ch, pos;
 
-    while (1) {
+    while (1)
+    {
 
         cout << "\n1. Insert at first" << endl;
         cout << "2. Insert at last" << endl;
@@ -202,54 +217,55 @@ int main() {
         cout << "Enter your choice: ";
         cin >> ch;
 
-        switch (ch) {
+        switch (ch)
+        {
 
-            case 1:
-                cout << "Enter the value to insert: ";
-                cin >> x;
-                insert_first(x);
-                break;
+        case 1:
+            cout << "Enter the value to insert: ";
+            cin >> x;
+            insert_first(x);
+            break;
 
-            case 2:
-                cout << "Enter the value to insert: ";
-                cin >> x;
-                insert_last(x);
-                break;
+        case 2:
+            cout << "Enter the value to insert: ";
+            cin >> x;
+            insert_last(x);
+            break;
 
-            case 3:
-                cout << "Enter the value to insert: ";
-                cin >> x;
+        case 3:
+            cout << "Enter the value to insert: ";
+            cin >> x;
 
-                cout << "Enter the position: ";
-                cin >> pos;
+            cout << "Enter the position: ";
+            cin >> pos;
 
-                insert_at_position(x, pos);
-                break;
+            insert_at_position(x, pos);
+            break;
 
-            case 4:
-                delete_first();
-                break;
+        case 4:
+            delete_first();
+            break;
 
-            case 5:
-                delete_last();
-                break;
+        case 5:
+            delete_last();
+            break;
 
-            case 6:
-                
-                cout << "enter a position to delete : " ;
-                cin >> pos;
-                delete_at_position(pos);
-            
-            case 7:
-               display();
-               break;
+        case 6:
 
-            case 8:
-                exit(0);
-                break;
+            cout << "enter a position to delete : ";
+            cin >> pos;
+            delete_at_position(pos);
 
-            default:
-                cout << "Invalid choice!" << endl;
+        case 7:
+            display();
+            break;
+
+        case 8:
+            exit(0);
+            break;
+
+        default:
+            cout << "Invalid choice!" << endl;
         }
     }
 
