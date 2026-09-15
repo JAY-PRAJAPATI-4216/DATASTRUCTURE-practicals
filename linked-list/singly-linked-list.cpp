@@ -168,8 +168,8 @@ int main(){
                 break;
             case 6:
                 cout << "Enter the position : ";
-                int pos;
-                cin >> pos;
+                int p;
+                cin >> p;
                 delete_at_position(pos);
                 break;
             case 7:
