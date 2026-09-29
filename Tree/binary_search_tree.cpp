@@ -1,3 +1,4 @@
+
 #include <iostream>
 using namespace std;
 
@@ -41,7 +42,10 @@ Node* insert(Node *root, int value)
 
 void inorder(Node *root)
 {
-    if (root != NULL)
+    if (root == NULL){
+        return ;
+    }
+    else
     {
         inorder(root->left);
         cout << root->data << " ";
@@ -51,7 +55,10 @@ void inorder(Node *root)
 
 void preorder(Node *root)
 {
-    if (root != NULL)
+    if (root == NULL){
+
+        return;
+    }else
     {
         cout << root->data << " ";
         preorder(root->left);
@@ -61,7 +68,10 @@ void preorder(Node *root)
 
 void postorder(Node *root)
 {
-    if (root != NULL)
+    if (root == NULL){
+        return;
+
+    }else
     {
         postorder(root->left);
         postorder(root->right);
@@ -78,7 +88,6 @@ int main()
     cin >> n;
 
     cout << "Enter elements: ";
-
     for (int i = 0; i < n; i++)
     {
         cin >> value;
