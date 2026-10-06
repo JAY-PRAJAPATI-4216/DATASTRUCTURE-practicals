@@ -1,45 +1,44 @@
 #include <iostream>
 using namespace std;
 
-void bubbleSort(int arr[], int n)
+
+void binarySearch(int arr[], int left, int right, int x)
 {
-    for (int i = 0; i < n - 1; i++)
+    if (right >= left)
     {
-        for (int j = 0; j < n - i - 1; j++)
-        {
-            // Swap if the current element is greater than the next element
-            if (arr[j] > arr[j + 1])
-            {
-                int temp = arr[j];
-                arr[j] = arr[j + 1];
-                arr[j + 1] = temp;
-            }
-        }
+        int mid = left + (right - left) / 2;
+
+        if (arr[mid] == x)
+            cout << "Element found at index " << mid << endl;
+        else if (arr[mid] > x)
+            binarySearch(arr, left, mid - 1, x);
+        else
+            binarySearch(arr, mid + 1, right, x);
+    }
+    else
+    {
+        cout << "Element not found in the array" << endl;
     }
 }
-
-
-int main()
-{
-
+int main(){
     int n;
-
-    cout << "Enter a number of elements: ";
+    
+    cout << "Enter the number of elements: ";
     cin >> n;
 
-    int array[n];
+    int arr[n];
 
-    for (int i = 0; i < n; i++)
+    int i;
+    cout << "Enter the elements in sorted order: ";
+    for (i = 0; i < n; i++)
     {
-        cout << "Enter element " << i + 1 << ": ";
-        cin >> array[i];
-    }
-    bubbleSort(array, n);
-
-    for (int i = 0; i < n; i++)
-    {
-        cout << array[i] << " ";
+        cin >> arr[i];
     }
 
+    int x;
+    cout << "Enter the element to search: ";
+    cin >> x;
+
+    binarySearch(arr, 0, n - 1, x);
     return 0;
 }
